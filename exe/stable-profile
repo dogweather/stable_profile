@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require 'stable-profile'
+require 'stable_profile'
 
 StableProfile.run()
