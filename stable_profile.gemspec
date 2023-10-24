@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "ruby-progressbar", "~> 1.13.0"
+  spec.add_dependency "thor"
 
   spec.add_development_dependency "aruba"
   spec.add_development_dependency "cucumber"
