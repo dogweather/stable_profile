@@ -5,4 +5,4 @@ Feature: Run
 
   Scenario: Requesting help
     When I run `stable-profile --help`
-    Then the output should contain "Usage: stable-profile [options]"
+    Then the output should contain "Commands:"
