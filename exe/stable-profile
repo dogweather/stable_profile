@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require 'stable_profile'
+require 'stable_profile/cli'
 
-StableProfile.run()
+StableProfile::CLI.start
