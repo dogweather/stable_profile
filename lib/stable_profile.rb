@@ -4,6 +4,7 @@ require 'fileutils'
 require 'json'
 require 'ruby-progressbar'
 
+
 module StableProfile
   class Error < StandardError; end
 

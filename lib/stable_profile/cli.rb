@@ -1,4 +1,6 @@
 require 'thor'
+require 'stable_profile'
+
 
 module StableProfile
   class CLI < Thor
