@@ -16,10 +16,10 @@ module StableProfile
   module_function
 
   # How many items to output in each category.
-  TOP_SLOWEST_EXAMPLES = 4
+  TOP_SLOWEST_EXAMPLES = 5
 
   # The more iterations you run, the more accurate the results will be.
-  ITERATIONS = 6
+  ITERATIONS = 10
 
   # It's a slow one if it showed up in at least half the profile runs.
   MINIMUM_SAMPLE_SIZE = ITERATIONS / 2
