@@ -19,8 +19,8 @@ module StableProfile
   TOP_SLOWEST_EXAMPLES = 5
 
   # The more iterations you run, the more accurate the results will be.
-  ITERATIONS           = 10
-  MINIMUM_SAMPLE_SIZE  = ITERATIONS
+  ITERATIONS           = 20
+  MINIMUM_SAMPLE_SIZE  = ITERATIONS * 0.75
   DECIMAL_PLACES       = 4
 
   OUTPUT_DIR = 'tmp/stable_profile'
@@ -39,7 +39,7 @@ module StableProfile
     # Run the specs ITERATIONS times, each time with a different random seed
     progressbar = ProgressBar.create(title: 'Running profiles', total: ITERATIONS, format: '%t: |%B| %p%% %a')
     ITERATIONS.times do |i|
-      system("rspec --profile 50 --order random --format json > #{OUTPUT_DIR}/multi_profile_#{i+1}.json")
+      system("rspec --profile --order random --format json > #{OUTPUT_DIR}/multi_profile_#{i+1}.json")
       progressbar.increment
     end
 
