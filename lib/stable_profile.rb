@@ -35,8 +35,6 @@ module StableProfile
 
 
   def run
-    puts "pwd = #{system('pwd')}"
-
     # Erase and Create the output directory
     FileUtils.rm_rf(OUTPUT_DIR)
     FileUtils.mkdir_p(OUTPUT_DIR)
