@@ -15,18 +15,16 @@ module StableProfile
   module_function
 
   # How many items to output in each category.
-  TOP_SLOWEST_EXAMPLES = 5
+  TOP_SLOWEST_EXAMPLES = 4
 
   # The more iterations you run, the more accurate the results will be.
-  # 20 seems like plenty, but it could take a while depending on the
-  # size of your test suite.
-  ITERATIONS = 4
+  ITERATIONS = 6
 
   # It's a slow one if it showed up in at least half the profile runs.
   MINIMUM_SAMPLE_SIZE = ITERATIONS / 2
   DECIMAL_PLACES = 4
 
-  OUTPUT_DIR = 'tmp/multi_profile'
+  OUTPUT_DIR = 'tmp/stable_profile'
 
 
   def bold(string)
