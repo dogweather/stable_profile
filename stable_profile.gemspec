@@ -3,10 +3,10 @@
 require_relative "lib/stable_profile/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "stable_profile"
-  spec.version = StableProfile::VERSION
+  spec.name    = "stable_profile"
+  spec.version = '0.3.0'
   spec.authors = ["Robb Shecter"]
-  spec.email = ["robb@public.law"]
+  spec.email   = ["robb@public.law"]
 
   spec.summary = "Runs RSpec profile with predictable results."
   spec.description = "Repeatedly run --profile, averaging the results."

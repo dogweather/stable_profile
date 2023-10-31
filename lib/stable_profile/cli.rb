@@ -4,7 +4,7 @@ module StableProfile
   class CLI < Thor
     desc "profile", "Run RSpec profile with predictable results."
     def profile
-      puts "Hello, world!"
+      StableProfile.run
     end
     default_task :profile
   end
