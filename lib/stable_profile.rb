@@ -88,7 +88,7 @@ module StableProfile
 
       example = record.fetch(:example)
 
-      puts "  #{example['full_description']}".colorize(:light_blue)
+      puts "  #{example['full_description']}".colorize(:light_black)
       puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{example['file_path']}:#{example['line_number']}"
     end
 
@@ -102,7 +102,7 @@ module StableProfile
 
       group = record.fetch(:group)
 
-      puts "  #{group['description']}".colorize(:light_blue)
+      puts "  #{group['description']}".colorize(:light_black)
       puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{group['location']}"
     end
   end
