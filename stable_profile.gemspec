@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "lib/stable_profile/version"
-
 Gem::Specification.new do |spec|
   spec.name    = "stable_profile"
   spec.version = '0.3.0'
