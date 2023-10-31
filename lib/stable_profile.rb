@@ -19,11 +19,9 @@ module StableProfile
   TOP_SLOWEST_EXAMPLES = 5
 
   # The more iterations you run, the more accurate the results will be.
-  ITERATIONS = 10
-
-  # It's a slow one if it showed up in at least half the profile runs.
-  MINIMUM_SAMPLE_SIZE = ITERATIONS / 2
-  DECIMAL_PLACES = 4
+  ITERATIONS           = 10
+  MINIMUM_SAMPLE_SIZE  = ITERATIONS
+  DECIMAL_PLACES       = 4
 
   OUTPUT_DIR = 'tmp/stable_profile'
 
