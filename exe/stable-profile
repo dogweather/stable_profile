@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'stable_profile/cli'
+
+StableProfile::CLI.start
