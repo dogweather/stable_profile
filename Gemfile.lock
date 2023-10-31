@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stable_profile (0.4.0)
+    stable_profile (0.4.1)
       ruby-progressbar (~> 1.13.0)
       thor
 
