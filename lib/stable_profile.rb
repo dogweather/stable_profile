@@ -12,12 +12,6 @@ module StableProfile
   #   --iterations 10
   #   --top-slowest-examples 10
 
-  class String
-    def bold
-      "\e[1m#{self}\e[22m" 
-    end
-  end
-
   module_function
 
   # How many items to output in each category.
@@ -35,7 +29,14 @@ module StableProfile
   OUTPUT_DIR = 'tmp/multi_profile'
 
 
+  def bold(string)
+    "\e[1m#{string}\e[22m" 
+  end
+
+
   def run
+    puts "pwd = #{system('pwd')}"
+
     # Erase and Create the output directory
     FileUtils.rm_rf(OUTPUT_DIR)
     FileUtils.mkdir_p(OUTPUT_DIR)
@@ -48,7 +49,9 @@ module StableProfile
     end
 
     # Read the results from the JSON files into an array.
-    outputs = Dir.glob("#{OUTPUT_DIR}/*.json").map { |file| JSON.parse(File.read(file)) }
+    outputs = Dir.glob("#{OUTPUT_DIR}/*.json").map do |file| 
+      JSON.parse(File.read(file))
+    end
 
     # Extract the JSON profile structures from the full results.
     profile_blocks = outputs.map { |output| output.fetch('profile') }
@@ -89,7 +92,7 @@ module StableProfile
       example = record.fetch(:example)
 
       puts "  #{example['full_description']}"
-      puts "    #{record[:average_time]} seconds".bold.ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{example['file_path']}:#{example['line_number']}"
+      puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{example['file_path']}:#{example['line_number']}"
     end
 
     puts
@@ -103,7 +106,7 @@ module StableProfile
       group = record.fetch(:group)
 
       puts "  #{group['description']}"
-      puts "    #{record[:average_time]} seconds".bold.ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{group['location']}"
+      puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{group['location']}"
     end
   end
 end
