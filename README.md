@@ -7,7 +7,7 @@ Run `rspec --profile` multiple times, averaging the results.
 
 I have a hard time getting predictable `--profile` info for my Rails app with 750 tests. Every time
 I run it, I get different results. I think it's because of class load order changing and test http
-startup. Which tests run first seem to take the longest.
+startup. The specs that run first seem to take the longest.
 
 This script works around these issues—making the output stable—by running `rspec --profile` many times and
 averaging the results.
