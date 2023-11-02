@@ -64,7 +64,7 @@ Top 5 slowest example groups:
 
 ```
 
-I that the above output every time I run stable-profile; that's the real added value of this gem.
+I get the above output every time I run stable-profile; that's the real added value of this gem.
 
 
 
