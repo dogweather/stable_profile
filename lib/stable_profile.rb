@@ -76,7 +76,7 @@ module StableProfile
     puts "Top #{top_slowest_examples} slowest examples:"
     count = 0
     example_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
-      next if count == TOP_SLOWEST_EXAMPLES
+      next if count == top_slowest_examples
       next if record[:run_times].size < minimum_sample_size
       count += 1
 
@@ -90,7 +90,7 @@ module StableProfile
     puts "Top #{top_slowest_examples} slowest example groups:"
     count = 0
     group_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
-      next if count == TOP_SLOWEST_EXAMPLES
+      next if count == top_slowest_examples
       next if record[:run_times].size < minimum_sample_size
       count += 1
 
