@@ -16,7 +16,6 @@ module StableProfile
   module_function
 
   # How many items to output in each category.
-  TOP_SLOWEST_EXAMPLES = 5
   DECIMAL_PLACES       = 4
   OUTPUT_DIR = 'tmp/stable_profile'
 
@@ -26,7 +25,7 @@ module StableProfile
   end
 
 
-  def run(iterations:)
+  def run(iterations:, top_slowest_examples:)
     minimum_sample_size = iterations * 0.75
 
     # Erase and Create the output directory
@@ -74,7 +73,7 @@ module StableProfile
 
     # Mimic RSpec profile output
     puts
-    puts "Top #{TOP_SLOWEST_EXAMPLES} slowest examples:"
+    puts "Top #{top_slowest_examples} slowest examples:"
     count = 0
     example_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
       next if count == TOP_SLOWEST_EXAMPLES
@@ -88,7 +87,7 @@ module StableProfile
     end
 
     puts
-    puts "Top #{TOP_SLOWEST_EXAMPLES} slowest example groups:"
+    puts "Top #{top_slowest_examples} slowest example groups:"
     count = 0
     group_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
       next if count == TOP_SLOWEST_EXAMPLES
