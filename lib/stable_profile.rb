@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'colorize'
 require 'fileutils'
 require 'json'
 require 'ruby-progressbar'
@@ -18,15 +19,11 @@ module StableProfile
   TOP_SLOWEST_EXAMPLES = 5
 
   # The more iterations you run, the more accurate the results will be.
-  # 20 seems like plenty, but it could take a while depending on the
-  # size of your test suite.
-  ITERATIONS = 4
+  ITERATIONS           = 20
+  MINIMUM_SAMPLE_SIZE  = ITERATIONS * 0.75
+  DECIMAL_PLACES       = 4
 
-  # It's a slow one if it showed up in at least half the profile runs.
-  MINIMUM_SAMPLE_SIZE = ITERATIONS / 2
-  DECIMAL_PLACES = 4
-
-  OUTPUT_DIR = 'tmp/multi_profile'
+  OUTPUT_DIR = 'tmp/stable_profile'
 
 
   def bold(string)
@@ -35,8 +32,6 @@ module StableProfile
 
 
   def run
-    puts "pwd = #{system('pwd')}"
-
     # Erase and Create the output directory
     FileUtils.rm_rf(OUTPUT_DIR)
     FileUtils.mkdir_p(OUTPUT_DIR)
@@ -44,7 +39,7 @@ module StableProfile
     # Run the specs ITERATIONS times, each time with a different random seed
     progressbar = ProgressBar.create(title: 'Running profiles', total: ITERATIONS, format: '%t: |%B| %p%% %a')
     ITERATIONS.times do |i|
-      system("rspec --profile 50 --order random --format json > #{OUTPUT_DIR}/multi_profile_#{i+1}.json")
+      system("rspec --profile --order random --format json > #{OUTPUT_DIR}/multi_profile_#{i+1}.json")
       progressbar.increment
     end
 
@@ -91,7 +86,7 @@ module StableProfile
 
       example = record.fetch(:example)
 
-      puts "  #{example['full_description']}"
+      puts "  #{example['full_description']}".colorize(:light_black)
       puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{example['file_path']}:#{example['line_number']}"
     end
 
@@ -105,7 +100,7 @@ module StableProfile
 
       group = record.fetch(:group)
 
-      puts "  #{group['description']}"
+      puts "  #{group['description']}".colorize(:light_black)
       puts bold("    #{record[:average_time]} seconds").ljust(27) + " (N=#{record[:run_times].size})".ljust(7) + " #{group['location']}"
     end
   end

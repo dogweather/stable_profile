@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    stable_profile (0.4.1)
+    stable_profile (0.5.0)
+      colorize
       ruby-progressbar (~> 1.13.0)
       thor
 
@@ -15,6 +16,7 @@ GEM
       rspec-expectations (~> 3.4)
       thor (~> 1.0)
     builder (3.2.4)
+    colorize (1.1.0)
     contracts (0.17)
     cucumber (9.0.2)
       builder (~> 3.2, >= 3.2.4)
@@ -44,7 +46,7 @@ GEM
     ffi (1.16.3)
     mini_mime (1.1.5)
     multi_test (1.1.0)
-    rake (13.0.6)
+    rake (13.1.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -65,6 +67,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   aruba
