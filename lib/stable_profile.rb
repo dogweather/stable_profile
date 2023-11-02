@@ -17,12 +17,7 @@ module StableProfile
 
   # How many items to output in each category.
   TOP_SLOWEST_EXAMPLES = 5
-
-  # The more iterations you run, the more accurate the results will be.
-  ITERATIONS           = 20
-  MINIMUM_SAMPLE_SIZE  = ITERATIONS * 0.75
   DECIMAL_PLACES       = 4
-
   OUTPUT_DIR = 'tmp/stable_profile'
 
 
@@ -31,14 +26,16 @@ module StableProfile
   end
 
 
-  def run
+  def run(iterations:)
+    minimum_sample_size = iterations * 0.75
+
     # Erase and Create the output directory
     FileUtils.rm_rf(OUTPUT_DIR)
     FileUtils.mkdir_p(OUTPUT_DIR)
 
     # Run the specs ITERATIONS times, each time with a different random seed
-    progressbar = ProgressBar.create(title: 'Running profiles', total: ITERATIONS, format: '%t: |%B| %p%% %a')
-    ITERATIONS.times do |i|
+    progressbar = ProgressBar.create(title: 'Running profiles', total: iterations, format: '%t: |%B| %p%% %a')
+    iterations.times do |i|
       system("rspec --profile --order random --format json > #{OUTPUT_DIR}/multi_profile_#{i+1}.json")
       progressbar.increment
     end
@@ -81,7 +78,7 @@ module StableProfile
     count = 0
     example_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
       next if count == TOP_SLOWEST_EXAMPLES
-      next if record[:run_times].size < MINIMUM_SAMPLE_SIZE
+      next if record[:run_times].size < minimum_sample_size
       count += 1
 
       example = record.fetch(:example)
@@ -95,7 +92,7 @@ module StableProfile
     count = 0
     group_times.sort_by { |id, record| record[:average_time] }.reverse.each do |id, record|
       next if count == TOP_SLOWEST_EXAMPLES
-      next if record[:run_times].size < MINIMUM_SAMPLE_SIZE
+      next if record[:run_times].size < minimum_sample_size
       count += 1
 
       group = record.fetch(:group)
