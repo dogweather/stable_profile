@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stable_profile (0.5.0)
+    stable_profile (0.6.0)
       colorize
       ruby-progressbar (~> 1.13.0)
       thor
